@@ -2,6 +2,9 @@
   "name": "portifolio",
   "version": "0.1.0",
   "private": true,
+  "license": "MIT",
+  "author": "Lukas Dias",
+  "email": "diaslukas19@gmail.com",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -9,6 +12,13 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@fontsource/poppins": "^4.5.8",
+    "@radix-ui/colors": "^0.1.8",
+    "@radix-ui/react-icons": "^1.1.1",
+    "@radix-ui/react-popover": "^0.1.6",
+    "@radix-ui/react-switch": "^0.1.5",
+    "@radix-ui/react-tooltip": "^0.1.7",
+    "@stitches/react": "^1.2.8",
     "next": "12.1.6",
     "react": "18.2.0",
     "react-dom": "18.2.0"
