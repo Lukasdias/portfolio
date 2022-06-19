@@ -2,7 +2,6 @@ import React, { memo } from "react";
 import { styled } from "../../stitches.config";
 import { darkTheme } from "../../stitches.config";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
-import * as Popover from "@radix-ui/react-popover";
 import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
 import * as Tooltip from "../components/Tooltip";
 
