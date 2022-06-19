@@ -1,9 +1,16 @@
 import React, { memo } from "react";
 import { darkTheme } from "../../stitches.config";
 import * as SwitchPrimitive from "@radix-ui/react-switch";
-import { SunIcon, MoonIcon } from "@radix-ui/react-icons";
+import {
+  SunIcon,
+  MoonIcon,
+  GitHubLogoIcon,
+  LinkedInLogoIcon,
+} from "@radix-ui/react-icons";
 import * as TooltipPrimitive from "@radix-ui/react-tooltip";
 import { styled, keyframes } from "./../../stitches.config";
+import { themeStableAtom } from "./ContextMenu";
+import { useAtom } from "jotai";
 
 const slideUpAndFade = keyframes({
   "0%": { opacity: 0, transform: "translateY(2px)" },
@@ -28,12 +35,13 @@ const slideLeftAndFade = keyframes({
 const StyledContent = styled(TooltipPrimitive.Content, {
   borderRadius: 4,
   padding: "10px 15px",
-  fontSize: "$4",
+  fontSize: "$2",
   lineHeight: 1,
-  color: "white",
+  color: "$loContrast",
+  fontWeight: "$heavy",
   boxShadow:
     "hsl(206 22% 7% / 35%) 0px 10px 38px -10px, hsl(206 22% 7% / 20%) 0px 10px 20px -15px",
-  backgroundColor: "$purple10",
+  backgroundColor: "$purple11",
   "@media (prefers-reduced-motion: no-preference)": {
     animationDuration: "400ms",
     animationTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
@@ -54,8 +62,10 @@ const StyledTrigger = styled(TooltipPrimitive.Trigger, {
   border: "none",
   alignItems: "center",
   justifyContent: "center",
-  transition: "background-color 300ms",
+  transition: "all 300ms",
   borderRadius: "$3",
+  backgroundColor: "$hiContrast",
+  color: "$loContrast",
   "&:focus": {
     outline: "none",
     background:
@@ -64,6 +74,11 @@ const StyledTrigger = styled(TooltipPrimitive.Trigger, {
   "&:hover": {
     background:
       "linear-gradient(25deg, rgb(250, 60, 249) 1.7%, rgb(252, 88, 126) 50.85%, rgb(252, 50, 57) 99.99%)",
+  },
+  a: {
+    "&:focus": {
+      outline: "none",
+    },
   },
 });
 
@@ -94,12 +109,14 @@ const StyledThumb = styled(SwitchPrimitive.Thumb, {
 });
 
 const Anchor = styled("div", {
-  position: "absolute",
+  position: "relative",
+  px: "$3",
+  py: "$3",
+  width: "100%",
   display: "flex",
   alignItems: "center",
+  justifyContent: "space-between",
   gap: "$2",
-  top: "$3",
-  right: "$4",
 });
 
 const Light = styled(SunIcon, {
@@ -110,6 +127,26 @@ const Dark = styled(MoonIcon, {
   size: "$5",
 });
 
+const Git = styled(GitHubLogoIcon, {
+  size: "$5",
+});
+
+const Linkedin = styled(LinkedInLogoIcon, { size: "$5" });
+
+const DarkThemeToggleWrapper = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "$2",
+});
+
+const PersonalLinksWrapper = styled("div", {
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  gap: "$2",
+});
+
 const Provider = TooltipPrimitive.Provider;
 const Root = TooltipPrimitive.Root;
 const TriggerWrapper = StyledTrigger;
@@ -118,8 +155,8 @@ const ContentWrapper = StyledContent;
 const Switch = StyledSwitch;
 const Thumb = StyledThumb;
 
-const DarkThemeToggle: React.FC = () => {
-  const [theme, setTheme] = React.useState("theme-default");
+const Topbar: React.FC = () => {
+  const [theme, setTheme] = useAtom(themeStableAtom);
 
   React.useEffect(() => {
     document.body.classList.remove("theme-default", darkTheme);
@@ -128,37 +165,73 @@ const DarkThemeToggle: React.FC = () => {
 
   return (
     <Anchor>
-      <Provider delayDuration={200}>
-        <Root>
-          <TriggerWrapper>
-            <Light />
-          </TriggerWrapper>
-          <ContentWrapper sideOffset={5} portalled={true}>
-            Light Mode
-          </ContentWrapper>
-        </Root>
-      </Provider>
-      <Switch
-        onClick={() =>
-          setTheme(theme === "theme-default" ? darkTheme : "theme-default")
-        }
-        defaultChecked
-        id="s1"
-      >
-        <Thumb />
-      </Switch>
-      <Provider delayDuration={200}>
-        <Root>
-          <TriggerWrapper>
-            <Dark />
-          </TriggerWrapper>
-          <ContentWrapper sideOffset={5} portalled={true}>
-            Dark Mode
-          </ContentWrapper>
-        </Root>
-      </Provider>
+      <PersonalLinksWrapper>
+        <Provider delayDuration={200}>
+          <Root>
+            <TriggerWrapper>
+              <a
+                href="https://github.com/Lukasdias"
+                target={"_blank"}
+                rel="noreferrer"
+              >
+                <Git />
+              </a>
+            </TriggerWrapper>
+            <ContentWrapper sideOffset={5} portalled={true}>
+              Github
+            </ContentWrapper>
+          </Root>
+        </Provider>
+        <Provider delayDuration={200}>
+          <Root>
+            <TriggerWrapper>
+              <a
+                href="https://www.linkedin.com/in/lukasdias/"
+                target={"_blank"}
+                rel="noreferrer"
+              >
+                <Linkedin />
+              </a>
+            </TriggerWrapper>
+            <ContentWrapper sideOffset={5} portalled={true}>
+              Linkedin
+            </ContentWrapper>
+          </Root>
+        </Provider>
+      </PersonalLinksWrapper>
+      <DarkThemeToggleWrapper>
+        <Provider delayDuration={200}>
+          <Root>
+            <TriggerWrapper>
+              <Light />
+            </TriggerWrapper>
+            <ContentWrapper sideOffset={5} portalled={true}>
+              Light
+            </ContentWrapper>
+          </Root>
+        </Provider>
+        <Switch
+          onClick={() =>
+            setTheme(theme === "theme-default" ? darkTheme : "theme-default")
+          }
+          checked={theme === "theme-default"}
+          id="s1"
+        >
+          <Thumb />
+        </Switch>
+        <Provider delayDuration={200}>
+          <Root>
+            <TriggerWrapper>
+              <Dark />
+            </TriggerWrapper>
+            <ContentWrapper sideOffset={5} portalled={true}>
+              Dark
+            </ContentWrapper>
+          </Root>
+        </Provider>
+      </DarkThemeToggleWrapper>
     </Anchor>
   );
 };
 
-export default memo(DarkThemeToggle);
+export default memo(Topbar);

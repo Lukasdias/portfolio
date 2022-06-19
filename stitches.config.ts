@@ -201,6 +201,9 @@ export const {
       shadowLight: "hsl(206 22% 7% / 35%)",
       shadowDark: "hsl(206 22% 7% / 20%)",
     },
+    fontWeights: {
+      heavy: 900,
+    },
     fonts: {
       base: "Poppins, sans-serif",
       mono: "Söhne Mono, menlo, monospace",

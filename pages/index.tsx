@@ -1,22 +1,34 @@
 import type { NextPage } from "next";
 import { styled } from "../stitches.config";
-import DarkThemeToggle from "./custom/DarkThemeToggle";
+import Topbar from "./custom/Topbar";
 import Head from "next/head";
+import Intro from "./components/Intro";
+import Repos from "./components/Repos";
 
-export const Container = styled("div", {
+const Container = styled("div", {
   width: "100vw",
-  height: "100vh",
+  minHeight: "100vh",
   backgroundColor: "$purple12",
   display: "flex",
+  alignItems: "center",
   fd: "column",
 });
 
-const Header = styled("h1", {
+const Title = styled("h1", {
   margin: "auto",
   padding: "$5",
   fontSize: "$9",
   fontWeight: "bold",
   color: "$purple6",
+});
+
+const Welcome = styled("div", {
+  height: "auto",
+  width: "100%",
+  display: "flex",
+  fd: "column",
+  justifyContent: "center",
+  alignItems: "center",
 });
 
 const Home: NextPage = () => {
@@ -26,8 +38,13 @@ const Home: NextPage = () => {
         <title>My Portfolio</title>
         <meta name="description" content="" />
       </Head>
-      <DarkThemeToggle />
-      <Header>Hello Stitches Portfolio</Header>
+      <Welcome>
+        <Topbar />
+        <Title>Welcome</Title>
+      </Welcome>
+      <Intro />
+      <Title>Repos</Title>
+      <Repos />
     </Container>
   );
 };
