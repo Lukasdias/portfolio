@@ -1,8 +1,15 @@
 import type { NextPage } from "next";
-import { Container } from "./components/Container";
 import { styled } from "../stitches.config";
 import DarkThemeToggle from "./custom/DarkThemeToggle";
 import Head from "next/head";
+
+export const Container = styled("div", {
+  width: "100vw",
+  height: "100vh",
+  backgroundColor: "$purple12",
+  display: "flex",
+  fd: "column",
+});
 
 const Header = styled("h1", {
   margin: "auto",
