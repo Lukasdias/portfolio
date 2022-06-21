@@ -122,7 +122,7 @@ export default function ContextMenu({ children }: Props): ReactElement {
   const [theme, setTheme] = useAtom(themeStableAtom);
 
   const handleReloadPage = () => {
-    window.location.reload();
+    // window.location.reload();
   };
 
   useEffect(() => {

@@ -1,5 +1,5 @@
 import React, { ReactElement } from "react";
-import { styled } from "./../../stitches.config";
+import { styled, keyframes } from "./../../stitches.config";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
 const Container = styled("div", {
@@ -7,14 +7,27 @@ const Container = styled("div", {
 });
 
 const Content = styled("div", {
-  width: "50%",
+  width: "90%",
   margin: "auto",
   display: "flex",
   flexDirection: "column",
+  "@bp1": {
+    width: "70%",
+  },
+  "@bp2": {
+    width: "50%",
+  },
 });
 
 const Text = styled("p", {
-  fontSize: "$8",
+  fontSize: "$6",
+  mb: "$2",
+  color: "$loContrast",
+});
+
+const TextBox = styled("div", {
+  fontSize: "$6",
+  mb: "$2",
   color: "$loContrast",
 });
 
@@ -50,6 +63,16 @@ const StyledFallback = styled(AvatarPrimitive.Fallback, {
   fontWeight: 500,
 });
 
+const ArticleLink = styled("a", {
+  fontWeight: "bold",
+  transition: "all 300ms",
+  cursor: "pointer",
+  color: "$purple6",
+  "&:hover": {
+    color: "$purple9",
+  },
+});
+
 const Avatar = StyledAvatar;
 const AvatarImage = StyledImage;
 const AvatarFallback = StyledFallback;
@@ -66,13 +89,55 @@ export default function Intro(): ReactElement {
           <AvatarFallback delayMs={600}>LD</AvatarFallback>
         </Avatar>
 
-        <Text>Lukas Dias</Text>
-
-        <Text>
-          Hi, {`i'm`} Lukas Henrique Braga Dias, a front end developer from
-          Brazil, currently a undergraduate Computer Science student at the
-          University of Maranhão and working at Pulse!
-        </Text>
+        <TextBox>
+          {`I'm Lukas Dias`}
+          <ul>
+            <li>
+              Currently a student of Computer Science at the Federal University
+              of Maranhão.
+            </li>
+            <li>
+              I started working as a front end developer since 2019 on the
+              article{" "}
+              <ArticleLink
+                href="http://ojs.sector3.com.br/index.php/sbie/article/viewFile/8819/6377"
+                target="_blank"
+                rel="noopener"
+              >
+                {`"Analysis of Gamification of a Virtual Learning Environment
+                Based on Bartle's Profiles"`}
+              </ArticleLink>
+              ;
+            </li>
+            <li>
+              A few months later I started working at
+              <ArticleLink
+                href="https://www.unasus.ufma.br/"
+                target="_blank"
+                rel="noopener"
+              >
+                UNASUS-UFMA
+              </ArticleLink>
+              with technologies like HTML, CSS, JS, ReactJS, Styled Components
+              and MaterialUI.
+            </li>
+            <li>
+              Now I work at{" "}
+              <ArticleLink
+                href="https://www.grupomateus.com.br/inovacao/"
+                target="_blank"
+                rel="noopener"
+              >
+                Pulse
+              </ArticleLink>{" "}
+              as a junior front end programmer, developing applications using
+              ReactJS and React Native.
+            </li>
+          </ul>
+          {`
+            
+            `}
+        </TextBox>
       </Content>
     </Container>
   );

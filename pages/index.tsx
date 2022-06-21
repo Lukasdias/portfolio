@@ -1,9 +1,10 @@
 import type { NextPage } from "next";
-import { styled } from "../stitches.config";
+import { styled, getCssText } from "../stitches.config";
 import Topbar from "./custom/Topbar";
 import Head from "next/head";
 import Intro from "./components/Intro";
 import Repos from "./components/Repos";
+import { VercelLogoIcon } from "@radix-ui/react-icons";
 
 const Container = styled("div", {
   width: "100vw",
@@ -31,6 +32,28 @@ const Welcome = styled("div", {
   alignItems: "center",
 });
 
+const Footer = styled("footer", {
+  width: "100%",
+  padding: "$3",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+});
+
+const FooterLink = styled("a", {
+  outline: "none",
+  cursor: "pointer",
+});
+
+const FooterIcon = styled(VercelLogoIcon, {
+  size: "$6",
+  color: "$sage6",
+  transition: "all 300ms ease-in-out",
+  "&:hover": {
+    color: "$sage9",
+  },
+});
+
 const Home: NextPage = () => {
   return (
     <Container>
@@ -40,11 +63,16 @@ const Home: NextPage = () => {
       </Head>
       <Welcome>
         <Topbar />
-        <Title>Welcome</Title>
+        <Title>Welcome to my portfolio</Title>
       </Welcome>
       <Intro />
-      <Title>Repos</Title>
+      <Title>Projects</Title>
       <Repos />
+      <Footer>
+        <FooterLink href="https://vercel.com" target="_blank" rel="noopener">
+          <FooterIcon />
+        </FooterLink>
+      </Footer>
     </Container>
   );
 };

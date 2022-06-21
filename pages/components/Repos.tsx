@@ -1,4 +1,4 @@
-import React, { ReactElement, useState, memo } from "react";
+import React, { ReactElement, useState, memo, useEffect } from "react";
 import { styled, keyframes } from "../../stitches.config";
 
 import Asyren from "public/asyren.png";
@@ -71,7 +71,7 @@ const HoverCardArrow = StyledArrow;
 
 const Flex = styled("div", { display: "flex" });
 
-const ImageTrigger = styled("a", {
+const ImageTrigger = styled("button", {
   all: "unset",
   cursor: "pointer",
   display: "flex",
@@ -123,6 +123,7 @@ const Link = styled("a", {
   alignItems: "center",
   fontSize: 15,
   lineHeight: 1.5,
+  transition: "all 200ms ease",
   variants: {
     faded: {
       true: { color: "$loContrast" },
@@ -130,6 +131,28 @@ const Link = styled("a", {
     bold: {
       true: { fontWeight: 500 },
     },
+  },
+  "&:hover": {
+    color: "$purple10",
+  },
+  "&:focus": {
+    color: "$purple10",
+  },
+});
+
+const LinkInnerBox = styled("div", {
+  margin: 0,
+  color: "$loContrast",
+  display: "flex",
+  alignItems: "center",
+  fontSize: 15,
+  lineHeight: 1.5,
+  transition: "all 200ms ease",
+  "&:hover": {
+    color: "$purple10",
+  },
+  "&:focus": {
+    color: "$purple10",
   },
 });
 
@@ -155,6 +178,25 @@ const TwitterWrapper = styled(Flex, {
 
 const TTIcon = styled(TwitterLogoIcon, {
   color: "$loContrast",
+});
+
+const VercelLogo = styled(VercelLogoIcon, {
+  color: "$loContrast",
+});
+
+const GitLogo = styled(GitHubLogoIcon, {
+  color: "$loContrast",
+});
+
+const IconButton = styled("button", {
+  backgroundColor: "transparent",
+  border: "none",
+  transition: "all 300ms ease-in-out",
+  cursor: "pointer",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  gap: "$2",
 });
 
 type HoverCardData = {
@@ -236,21 +278,17 @@ const repos: HoverCardData[] = [
   },
 ];
 
-function Repos(): ReactElement {
+const Repos: React.FC = () => {
   return (
     <>
       {repos.map((repo, idx: number) => (
         <HoverCard openDelay={200} closeDelay={200} key={idx}>
           <HoverCardTrigger asChild>
-            <ImageTrigger
-              href="https://twitter.com/radix_ui"
-              target="_blank"
-              rel="noreferrer noopener"
-            >
+            <ImageTrigger>
               <Img src={repo.pic} />
             </ImageTrigger>
           </HoverCardTrigger>
-          <HoverCardContent sideOffset={5} side={"left"}>
+          <HoverCardContent sideOffset={2} side={"left"}>
             <Flex css={{ flexDirection: "column", gap: 7 }}>
               <Img src={repo.pic} />
               <Flex css={{ flexDirection: "column", gap: 15 }}>
@@ -258,8 +296,15 @@ function Repos(): ReactElement {
                   <TwitterWrapper>
                     <Text>{repo.name}</Text>
                     <Link
+                      href={`https://twitter.com/${repo.twitter}`}
+                      target="_blank"
+                      rel="noreferrer noopener"
                       bold
-                      css={{ display: "flex", alignItems: "center", gap: "$1" }}
+                      css={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "$1",
+                      }}
                     >
                       <TTIcon />
                       {repo.twitter}
@@ -269,8 +314,18 @@ function Repos(): ReactElement {
                 ) : (
                   <>
                     <Text>
-                      <Link bold>{repo.name}</Link>
-                      <Link faded>@{repo.id}</Link>
+                      <Link bold href={repo.git} target="_blank" rel="noopener">
+                        <IconButton>
+                          <GitLogo />
+                          <LinkInnerBox>{repo.name}</LinkInnerBox>
+                        </IconButton>
+                      </Link>
+                      <Link bold href={repo.url} target="_blank" rel="noopener">
+                        <IconButton>
+                          <VercelLogo />
+                          <LinkInnerBox>Deployed Version</LinkInnerBox>
+                        </IconButton>
+                      </Link>
                     </Text>
                     <Description>{repo.description}</Description>
                   </>
@@ -283,6 +338,6 @@ function Repos(): ReactElement {
       ))}
     </>
   );
-}
+};
 
-export default memo(Repos);
+export default Repos;
