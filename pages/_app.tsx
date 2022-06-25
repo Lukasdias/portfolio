@@ -12,7 +12,7 @@ import {
   KBarResults,
   NO_GROUP,
 } from "kbar";
-import { styled } from "../stitches.config";
+import { styled, getCssText } from "../stitches.config";
 
 import { GetStaticProps, GetStaticPaths, GetServerSideProps } from "next";
 
@@ -60,8 +60,6 @@ const MenuSearch = styled(KBarSearch, {
 //     />
 //   );
 // };
-
-export const getServerSideProps = async (context: any) => {};
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (

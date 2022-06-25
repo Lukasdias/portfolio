@@ -41,6 +41,7 @@ const StyledAvatar = styled(AvatarPrimitive.Root, {
   size: "$9",
   borderRadius: "100%",
   backgroundColor: "$blackA3",
+  mb: "$4",
 });
 
 const StyledImage = styled(AvatarPrimitive.Image, {
@@ -90,7 +91,7 @@ export default function Intro(): ReactElement {
         </Avatar>
 
         <TextBox>
-          {`I'm Lukas Dias`}
+          I'm Lukas Dias
           <ul>
             <li>
               Currently a student of Computer Science at the Federal University
@@ -110,13 +111,13 @@ export default function Intro(): ReactElement {
               ;
             </li>
             <li>
-              A few months later I started working at
+              A few months later I started working at{" "}
               <ArticleLink
                 href="https://www.unasus.ufma.br/"
                 target="_blank"
                 rel="noopener"
               >
-                UNASUS-UFMA
+                UNASUS-UFMA{" "}
               </ArticleLink>
               with technologies like HTML, CSS, JS, ReactJS, Styled Components
               and MaterialUI.
@@ -134,9 +135,6 @@ export default function Intro(): ReactElement {
               ReactJS and React Native.
             </li>
           </ul>
-          {`
-            
-            `}
         </TextBox>
       </Content>
     </Container>
