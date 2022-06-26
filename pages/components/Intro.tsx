@@ -1,6 +1,6 @@
-import React, { ReactElement } from "react";
-import { styled, keyframes } from "./../../stitches.config";
 import * as AvatarPrimitive from "@radix-ui/react-avatar";
+import { ReactElement } from "react";
+import { styled } from "./../../stitches.config";
 
 const Container = styled("div", {
   display: "flex",
@@ -91,7 +91,7 @@ export default function Intro(): ReactElement {
         </Avatar>
 
         <TextBox>
-          I'm Lukas Dias
+          {"I'm"} Lukas Dias
           <ul>
             <li>
               Currently a student of Computer Science at the Federal University
