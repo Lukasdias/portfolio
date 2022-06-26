@@ -15,6 +15,8 @@ import {
   VercelLogoIcon,
 } from "@radix-ui/react-icons";
 
+import { motion } from "framer-motion";
+
 import * as HoverCardPrimitive from "@radix-ui/react-hover-card";
 
 const slideUpAndFade = keyframes({
@@ -88,14 +90,10 @@ const ImageTrigger = styled("button", {
   },
 });
 
-const Img = styled("img", {
+const Img = styled(motion.img, {
   display: "block",
   maxWidth: "100%",
-  transition: "all 200ms",
   borderRadius: "$3",
-  "&:hover": {
-    filter: "brightness(0.5)",
-  },
 });
 
 const Text = styled("div", {
@@ -281,7 +279,22 @@ const Repos: React.FC = () => {
         <HoverCard openDelay={10} closeDelay={10} key={idx}>
           <HoverCardTrigger asChild>
             <ImageTrigger>
-              <Img src={repo.pic} alt={repo.description} />
+              <Img
+                initial={
+                  idx % 2 == 0
+                    ? { opacity: 0, x: -1000 }
+                    : { opacity: 1, x: 1000 }
+                }
+                transition={{
+                  duration: 0.5,
+                  ease: "easeOut",
+                }}
+                viewport={{ once: false }}
+                whileHover={{ opacity: 0.5 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                src={repo.pic}
+                alt={repo.description}
+              />
             </ImageTrigger>
           </HoverCardTrigger>
           <HoverCardContent
