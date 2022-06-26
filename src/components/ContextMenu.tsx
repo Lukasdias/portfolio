@@ -1,8 +1,8 @@
-import React, { ReactElement, useEffect } from "react";
-import { styled, keyframes, darkTheme } from "../../stitches.config";
-import * as ContextMenuPrimitive from "@radix-ui/react-context-menu";
-import { CheckIcon, MoonIcon, SunIcon } from "@radix-ui/react-icons";
-import { atom, useAtom } from "jotai";
+import * as ContextMenuPrimitive from '@radix-ui/react-context-menu';
+import { CheckIcon, MoonIcon, SunIcon } from '@radix-ui/react-icons';
+import { atom, useAtom } from 'jotai';
+import { ReactElement, useEffect } from 'react';
+import { darkTheme, styled } from '../../stitches.config';
 
 interface Props {
   children: any;
@@ -10,36 +10,36 @@ interface Props {
 
 const StyledContent = styled(ContextMenuPrimitive.Content, {
   minWidth: 220,
-  backgroundColor: "$loContrast",
+  backgroundColor: '$loContrast',
   borderRadius: 6,
-  overflow: "hidden",
+  overflow: 'hidden',
   padding: 5,
   boxShadow:
-    "0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)",
+    '0px 10px 38px -10px rgba(22, 23, 24, 0.35), 0px 10px 20px -15px rgba(22, 23, 24, 0.2)',
 });
 
 const itemStyles = {
-  all: "unset",
+  all: 'unset',
   fontSize: 13,
   lineHeight: 1,
-  color: "$purple11",
+  color: '$purple11',
   borderRadius: 3,
-  display: "flex",
-  alignItems: "center",
+  display: 'flex',
+  alignItems: 'center',
   height: 25,
-  padding: "0 5px",
-  position: "relative",
+  padding: '0 5px',
+  position: 'relative',
   paddingLeft: 25,
-  userSelect: "none",
+  userSelect: 'none',
 
-  "&[data-disabled]": {
-    color: "$mauve8",
-    pointerEvents: "none",
+  '&[data-disabled]': {
+    color: '$mauve8',
+    pointerEvents: 'none',
   },
 
-  "&:focus": {
-    backgroundColor: "$purple9",
-    color: "$purple1",
+  '&:focus': {
+    backgroundColor: '$purple9',
+    color: '$purple1',
   },
 };
 
@@ -55,8 +55,8 @@ const StyledRadioItem = styled(ContextMenuPrimitive.RadioItem, {
 
 const StyledTriggerItem = styled(ContextMenuPrimitive.TriggerItem, {
   '&[data-state="open"]': {
-    backgroundColor: "$purple4",
-    color: "$purple11",
+    backgroundColor: '$purple4',
+    color: '$purple11',
   },
   ...itemStyles,
 });
@@ -64,44 +64,44 @@ const StyledTriggerItem = styled(ContextMenuPrimitive.TriggerItem, {
 const StyledLabel = styled(ContextMenuPrimitive.Label, {
   paddingLeft: 25,
   fontSize: 12,
-  lineHeight: "25px",
-  color: "$purple11",
+  lineHeight: '25px',
+  color: '$purple11',
 });
 
 const StyledSeparator = styled(ContextMenuPrimitive.Separator, {
   height: 1,
-  backgroundColor: "$purple6",
+  backgroundColor: '$purple6',
   margin: 5,
 });
 
 const StyledItemIndicator = styled(ContextMenuPrimitive.ItemIndicator, {
-  position: "absolute",
+  position: 'absolute',
   left: 0,
   width: 25,
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
 });
 
-const Box = styled("div", {});
+const Box = styled('div', {});
 
-const Instruction = styled("div", {
+const Instruction = styled('div', {
   border: `2px $loContrast dashed`,
-  color: "$loContrast",
+  color: '$loContrast',
   borderRadius: 4,
   fontSize: 15,
-  userSelect: "none",
-  padding: "45px 0",
+  userSelect: 'none',
+  padding: '45px 0',
   width: 300,
-  textAlign: "center",
+  textAlign: 'center',
 });
 
-const RightSlot = styled("div", {
-  marginLeft: "auto",
+const RightSlot = styled('div', {
+  marginLeft: 'auto',
   paddingLeft: 20,
-  color: "$mauve11",
-  ":focus > &": { color: "$loContrast" },
-  "[data-disabled] &": { color: "$mauve8" },
+  color: '$mauve11',
+  ':focus > &': { color: '$loContrast' },
+  '[data-disabled] &': { color: '$mauve8' },
 });
 
 const ContextMenuRoot = ContextMenuPrimitive.Root;
@@ -116,17 +116,17 @@ const ContextMenuTriggerItem = StyledTriggerItem;
 const ContextMenuLabel = StyledLabel;
 const ContextMenuSeparator = StyledSeparator;
 
-export const themeStableAtom = atom("theme-default");
+export const themeStableAtom = atom('theme-default');
 
 export default function ContextMenu({ children }: Props): ReactElement {
   const [theme, setTheme] = useAtom(themeStableAtom);
 
   const handleReloadPage = () => {
-    // window.location.reload();
+    window.location.reload();
   };
 
   useEffect(() => {
-    document.body.classList.remove("theme-default", darkTheme);
+    document.body.classList.remove('theme-default', darkTheme);
     document.body.classList.add(theme);
   }, [theme]);
 
@@ -149,19 +149,19 @@ export default function ContextMenu({ children }: Props): ReactElement {
             <ContextMenuItemIndicator>
               <CheckIcon />
             </ContextMenuItemIndicator>
-            Light Theme{" "}
+            Light Theme{' '}
             <RightSlot>
               <SunIcon />
             </RightSlot>
           </ContextMenuCheckboxItem>
           <ContextMenuCheckboxItem
             checked={theme !== darkTheme}
-            onCheckedChange={() => setTheme("theme-default")}
+            onCheckedChange={() => setTheme('theme-default')}
           >
             <ContextMenuItemIndicator>
               <CheckIcon />
             </ContextMenuItemIndicator>
-            Dark Theme{" "}
+            Dark Theme{' '}
             <RightSlot>
               <MoonIcon />
             </RightSlot>

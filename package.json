@@ -1,15 +1,12 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
+  "name": "portifolio-vite",
   "private": true,
-  "license": "MIT",
-  "author": "Lukas Dias",
-  "email": "diaslukas19@gmail.com",
+  "version": "0.0.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "serve": "tsc && vite build && vite preview",
+    "preview": "vite preview"
   },
   "dependencies": {
     "@fontsource/poppins": "^4.5.8",
@@ -22,23 +19,36 @@
     "@radix-ui/react-popover": "^0.1.6",
     "@radix-ui/react-switch": "^0.1.5",
     "@radix-ui/react-tooltip": "^0.1.7",
-    "@react-spring/parallax": "^9.4.5",
     "@stitches/react": "^1.2.8",
     "jotai": "^1.7.2",
     "kbar": "^0.1.0-beta.36",
-    "next": "12.1.6",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
-    "react-query": "^3.39.1",
-    "react-spring": "^9.4.5",
-    "react-use-gesture": "^9.1.3"
+    "react": "^18.0.0",
+    "react-dom": "^18.0.0",
+    "vite-plugin-compress": "^2.1.1"
   },
   "devDependencies": {
-    "@types/node": "18.0.0",
-    "@types/react": "18.0.14",
-    "@types/react-dom": "18.0.5",
-    "eslint": "8.18.0",
-    "eslint-config-next": "12.1.6",
-    "typescript": "4.7.4"
+    "@types/": "radix-ui/colors",
+    "@types/eslint": "^8.4.3",
+    "@types/eslint-config-prettier": "^6.11.0",
+    "@types/eslint-plugin-prettier": "^3.1.0",
+    "@types/node": "^18.0.0",
+    "@types/react": "^18.0.0",
+    "@types/react-dom": "^18.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.29.0",
+    "@typescript-eslint/parser": "^5.29.0",
+    "@vitejs/plugin-react": "^1.3.0",
+    "eslint": "^8.0.1",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-standard": "^17.0.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-plugin-n": "^15.0.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-react": "^7.30.1",
+    "typescript": "^4.6.3",
+    "vite": "^2.9.9",
+    "vite-imagetools": "^4.0.4",
+    "vite-plugin-eslint": "^1.6.1",
+    "vite-plugin-imagemin": "^0.6.1"
   }
 }

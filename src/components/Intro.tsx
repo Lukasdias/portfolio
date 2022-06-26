@@ -1,76 +1,75 @@
-import * as AvatarPrimitive from "@radix-ui/react-avatar";
-import { ReactElement } from "react";
-import { styled } from "./../../stitches.config";
+import * as AvatarPrimitive from '@radix-ui/react-avatar';
+import { styled } from './../../stitches.config';
 
-const Container = styled("div", {
-  display: "flex",
+const Container = styled('div', {
+  display: 'flex',
 });
 
-const Content = styled("div", {
-  width: "90%",
-  margin: "auto",
-  display: "flex",
-  flexDirection: "column",
-  "@bp1": {
-    width: "70%",
+const Content = styled('div', {
+  width: '90%',
+  margin: 'auto',
+  display: 'flex',
+  flexDirection: 'column',
+  '@bp2': {
+    width: '70%',
   },
-  "@bp2": {
-    width: "50%",
+  '@bp3': {
+    width: '50%',
   },
 });
 
-const Text = styled("p", {
-  fontSize: "$6",
-  mb: "$2",
-  color: "$loContrast",
+const Text = styled('p', {
+  fontSize: '$6',
+  mb: '$2',
+  color: '$loContrast',
 });
 
-const TextBox = styled("div", {
-  fontSize: "$6",
-  mb: "$2",
-  color: "$loContrast",
+const TextBox = styled('div', {
+  fontSize: '$6',
+  mb: '$2',
+  color: '$loContrast',
 });
 
 const StyledAvatar = styled(AvatarPrimitive.Root, {
-  display: "inline-flex",
-  alignItems: "center",
-  justifyContent: "center",
-  verticalAlign: "middle",
-  overflow: "hidden",
-  userSelect: "none",
-  size: "$9",
-  borderRadius: "100%",
-  backgroundColor: "$blackA3",
-  mb: "$4",
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  verticalAlign: 'middle',
+  overflow: 'hidden',
+  userSelect: 'none',
+  size: '$9',
+  borderRadius: '100%',
+  backgroundColor: '$blackA3',
+  mb: '$4',
 });
 
 const StyledImage = styled(AvatarPrimitive.Image, {
-  width: "100%",
-  height: "100%",
-  objectFit: "cover",
-  borderRadius: "inherit",
+  width: '100%',
+  height: '100%',
+  objectFit: 'cover',
+  borderRadius: 'inherit',
 });
 
 const StyledFallback = styled(AvatarPrimitive.Fallback, {
-  width: "100%",
-  height: "100%",
-  display: "flex",
-  alignItems: "center",
-  justifyContent: "center",
-  backgroundColor: "white",
-  color: "$violet11",
+  width: '100%',
+  height: '100%',
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  backgroundColor: 'white',
+  color: '$violet11',
   fontSize: 15,
   lineHeight: 1,
   fontWeight: 500,
 });
 
-const ArticleLink = styled("a", {
-  fontWeight: "bold",
-  transition: "all 300ms",
-  cursor: "pointer",
-  color: "$purple6",
-  "&:hover": {
-    color: "$purple9",
+const ArticleLink = styled('a', {
+  fontWeight: 'bold',
+  transition: 'all 300ms',
+  cursor: 'pointer',
+  color: '$purple6',
+  '&:hover': {
+    color: '$purple9',
   },
 });
 
@@ -78,7 +77,7 @@ const Avatar = StyledAvatar;
 const AvatarImage = StyledImage;
 const AvatarFallback = StyledFallback;
 
-export default function Intro(): ReactElement {
+const Intro: React.FC = () => {
   return (
     <Container>
       <Content>
@@ -99,7 +98,7 @@ export default function Intro(): ReactElement {
             </li>
             <li>
               I started working as a front end developer since 2019 on the
-              article{" "}
+              article{' '}
               <ArticleLink
                 href="http://ojs.sector3.com.br/index.php/sbie/article/viewFile/8819/6377"
                 target="_blank"
@@ -111,26 +110,26 @@ export default function Intro(): ReactElement {
               ;
             </li>
             <li>
-              A few months later I started working at{" "}
+              A few months later I started working at{' '}
               <ArticleLink
                 href="https://www.unasus.ufma.br/"
                 target="_blank"
                 rel="noopener"
               >
-                UNASUS-UFMA{" "}
+                UNASUS-UFMA{' '}
               </ArticleLink>
               with technologies like HTML, CSS, JS, ReactJS, Styled Components
               and MaterialUI.
             </li>
             <li>
-              Now I work at{" "}
+              Now I work at{' '}
               <ArticleLink
                 href="https://www.grupomateus.com.br/inovacao/"
                 target="_blank"
                 rel="noopener"
               >
                 Pulse
-              </ArticleLink>{" "}
+              </ArticleLink>{' '}
               as a junior front end programmer, developing applications using
               ReactJS and React Native.
             </li>
@@ -139,4 +138,6 @@ export default function Intro(): ReactElement {
       </Content>
     </Container>
   );
-}
+};
+
+export default Intro;
